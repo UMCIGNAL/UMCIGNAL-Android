@@ -1,4 +1,4 @@
-package com.daemon.androidnavigationtemplate
+package com.daemon.smusignal
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate

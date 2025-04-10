@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AndroidNavigationTemplate"
+rootProject.name = "smusignal"
 include(":app")
  

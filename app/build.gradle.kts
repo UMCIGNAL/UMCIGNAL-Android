@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.daemon.androidnavigationtemplate"
+    namespace = "com.daemon.smusignal"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.daemon.androidnavigationtemplate"
+        applicationId = "com.daemon.smusignal"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

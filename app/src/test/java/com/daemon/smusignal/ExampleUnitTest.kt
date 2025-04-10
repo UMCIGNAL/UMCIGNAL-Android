@@ -1,4 +1,4 @@
-package com.daemon.androidnavigationtemplate
+package com.daemon.smusignal
 
 import org.junit.Test
 

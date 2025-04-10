@@ -1,4 +1,4 @@
-package com.daemon.androidnavigationtemplate.presentation.home
+package com.daemon.smusignal.presentation.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.daemon.androidnavigationtemplate.databinding.FragmentHomeBinding
-import com.daemon.androidnavigationtemplate.presentation.base.MainActivity
+import com.daemon.smusignal.databinding.FragmentHomeBinding
+import com.daemon.smusignal.presentation.base.MainActivity
 
 class HomeFragment : Fragment() {
     private lateinit var navController: NavController
@@ -31,8 +31,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-
-        (requireActivity() as MainActivity).hideBottomNavigation(false)
     }
 
     override fun onDestroyView() {

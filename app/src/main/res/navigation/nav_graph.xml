@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.daemon.androidnavigationtemplate.presentation.home.HomeFragment"
+        android:name="com.daemon.smusignal.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
     </fragment>
