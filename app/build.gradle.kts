@@ -26,15 +26,15 @@ android {
                 "proguard-rules.pro"
             )
             manifestPlaceholders["appName"] = "@string/app_name"
-            manifestPlaceholders["appIcon"] = "@mipmap/ic_launcher"
-            manifestPlaceholders["roundAppIcon"] = "@mipmap/ic_launcher_round"
+            manifestPlaceholders["appIcon"] = "@mipmap/ic_smusignal"
+            manifestPlaceholders["roundAppIcon"] = "@mipmap/ic_smusignal_round"
         }
         debug {
             isMinifyEnabled = false
             isDebuggable = true
             manifestPlaceholders["appName"] = "@string/app_name_debug"
-            manifestPlaceholders["appIcon"] = "@mipmap/ic_launcher"
-            manifestPlaceholders["roundAppIcon"] = "@mipmap/ic_launcher_round"
+            manifestPlaceholders["appIcon"] = "@mipmap/ic_smusignal"
+            manifestPlaceholders["roundAppIcon"] = "@mipmap/ic_smusignal_round"
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
         }

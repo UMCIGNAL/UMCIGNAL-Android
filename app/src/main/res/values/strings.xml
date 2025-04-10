@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">smusignal</string>
-    <string name="app_name_debug">smusignalblack</string>
+    <string name="app_name">스뮤시그널</string>
+    <string name="app_name_debug">스뮤시그널 개발자용</string>
 </resources>
