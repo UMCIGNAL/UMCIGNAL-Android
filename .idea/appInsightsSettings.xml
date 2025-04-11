@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AppInsightsSettings">
+    <option name="selectedTabId" value="Firebase Crashlytics" />
     <option name="tabSettings">
       <map>
         <entry key="Android Vitals">
@@ -22,10 +23,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.daemon.smusignal.debug" />
+                  <option name="mobileSdkAppId" value="1:291079401601:android:2b3e1fdf86b542ba9d9d80" />
+                  <option name="projectId" value="smusignal" />
+                  <option name="projectNumber" value="291079401601" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
