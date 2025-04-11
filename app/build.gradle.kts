@@ -1,7 +1,13 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.services)
 }
+
+val localProperties = Properties()
+localProperties.load(project.rootProject.file("local.properties").inputStream())
 
 android {
     namespace = "com.daemon.smusignal"
@@ -17,6 +23,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        getByName("debug") {
+            keyAlias = localProperties["SIGNED_KEY_ALIAS"] as String?
+            keyPassword = localProperties["SIGNED_KEY_PASSWORD"] as String?
+            storeFile = localProperties["SIGNED_STORE_FILE"]?.let { file(it) }
+            storePassword = localProperties["SIGNED_STORE_PASSWORD"] as String?
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -28,15 +43,17 @@ android {
             manifestPlaceholders["appName"] = "@string/app_name"
             manifestPlaceholders["appIcon"] = "@mipmap/ic_smusignal"
             manifestPlaceholders["roundAppIcon"] = "@mipmap/ic_smusignal_round"
+            signingConfig = signingConfigs.getByName("debug")
         }
         debug {
             isMinifyEnabled = false
             isDebuggable = true
             manifestPlaceholders["appName"] = "@string/app_name_debug"
-            manifestPlaceholders["appIcon"] = "@mipmap/ic_smusignal"
-            manifestPlaceholders["roundAppIcon"] = "@mipmap/ic_smusignal_round"
+            manifestPlaceholders["appIcon"] = "@mipmap/ic_smusignal_debug"
+            manifestPlaceholders["roundAppIcon"] = "@mipmap/ic_smusignal_debug_round"
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -64,5 +81,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.splashscreen)
     implementation(libs.timber)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.gson)
 }
