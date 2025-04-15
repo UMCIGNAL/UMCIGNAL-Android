@@ -16,3 +16,5 @@ local.properties
 /app/google-services.json
 /app/src/debug/google-services.json
 /keystore.jks
+/app/debug/app-debug.aab
+/app/release/app-release.aab

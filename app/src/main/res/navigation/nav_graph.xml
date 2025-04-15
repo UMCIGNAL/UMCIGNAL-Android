@@ -4,13 +4,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/navigation_login">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.daemon.smusignal.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.daemon.smusignal.presentation.onboarding.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_navigation_login_to_auth_fragment"
+            app:destination="@id/navigation_auth" />
+        <action
+            android:id="@+id/action_navigation_login_to_home_fragment"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_auth"
+        android:name="com.daemon.smusignal.presentation.onboarding.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth">
+        <action
+            android:id="@+id/action_navigation_auth_to_home_fragment"
+            app:destination="@id/navigation_home" />
     </fragment>
 
 </navigation>
