@@ -113,7 +113,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/btn_auth"
+                    android:id="@+id/btn_auth_code_send"
                     android:layout_width="136dp"
                     android:layout_height="wrap_content"
                     android:text="인증코드 전송"
@@ -123,7 +123,7 @@
                     android:paddingBottom="8dp"
                     android:layout_marginEnd="24dp"
                     android:gravity="center"
-                    android:clickable="false"
+                    android:enabled="false"
                     android:background="@drawable/bg_btn_std_num"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/et_auth_std_num"
@@ -199,6 +199,7 @@
         style="@style/t2_sb"
         android:padding="16dp"
         android:gravity="center"
+        android:enabled="false"
         android:background="@drawable/bg_btn_auth"
         app:layout_constraintStart_toStartOf="@+id/gl_start"
         app:layout_constraintEnd_toEndOf="@+id/gl_end"

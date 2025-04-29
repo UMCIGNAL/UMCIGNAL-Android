@@ -3,8 +3,8 @@ package com.daemon.smusignal
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
-import com.daemon.smusignal.network.RetrofitClient
-import com.daemon.smusignal.network.TokenManager
+import com.daemon.smusignal.data.remote.RetrofitClient
+import com.daemon.smusignal.data.remote.TokenManager
 
 class MyApplication : Application(){
     override fun onCreate() {
