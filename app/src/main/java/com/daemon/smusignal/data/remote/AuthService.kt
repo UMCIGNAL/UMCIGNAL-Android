@@ -1,5 +1,14 @@
-package com.daemon.smusignal.data
+package com.daemon.smusignal.data.remote
 
+import com.daemon.smusignal.data.local.CheckSignUpResponse
+import com.daemon.smusignal.data.local.EmptyRequest
+import com.daemon.smusignal.data.local.LogOutResponse
+import com.daemon.smusignal.data.local.MailCodeRequest
+import com.daemon.smusignal.data.local.MailCodeResponse
+import com.daemon.smusignal.data.local.MailVerificationRequest
+import com.daemon.smusignal.data.local.MailVerificationResponse
+import com.daemon.smusignal.data.local.SignUpRequest
+import com.daemon.smusignal.data.local.SignUpResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -36,5 +45,5 @@ interface AuthService {
     // 유저 정보 변경 API
 
     @GET("operating/checkSignUp")
-    suspend fun checkSignUp(): Response<LogOutResponse>
+    suspend fun checkSignUp(): Response<CheckSignUpResponse>
 }

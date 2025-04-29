@@ -1,6 +1,5 @@
-package com.daemon.smusignal.network
+package com.daemon.smusignal.data.remote
 
-import com.daemon.smusignal.data.AuthService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -44,5 +43,9 @@ object RetrofitClient {
 
     val authService: AuthService by lazy {
         retrofit.create(AuthService::class.java)
+    }
+
+    val referralService: ReferralService by lazy {
+        retrofit.create(ReferralService::class.java)
     }
 }

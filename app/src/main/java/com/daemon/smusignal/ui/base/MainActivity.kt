@@ -1,4 +1,4 @@
-package com.daemon.smusignal.presentation.base
+package com.daemon.smusignal.ui.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

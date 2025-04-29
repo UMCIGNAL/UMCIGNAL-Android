@@ -1,4 +1,4 @@
-package com.daemon.smusignal.data
+package com.daemon.smusignal.data.local
 
 import com.google.gson.annotations.SerializedName
 

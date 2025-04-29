@@ -1,4 +1,4 @@
-package com.daemon.smusignal.network
+package com.daemon.smusignal.data.remote
 
 import android.content.SharedPreferences
 

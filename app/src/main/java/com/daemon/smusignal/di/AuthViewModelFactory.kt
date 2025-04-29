@@ -2,10 +2,10 @@ package com.daemon.smusignal.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.daemon.smusignal.data.AuthService
-import com.daemon.smusignal.domain.AuthRepository
-import com.daemon.smusignal.network.TokenManager
-import com.daemon.smusignal.presentation.onboarding.AuthViewModel
+import com.daemon.smusignal.data.remote.AuthService
+import com.daemon.smusignal.data.repository.AuthRepository
+import com.daemon.smusignal.data.remote.TokenManager
+import com.daemon.smusignal.ui.user.AuthViewModel
 
 class AuthViewModelFactory(
     private val authService: AuthService,

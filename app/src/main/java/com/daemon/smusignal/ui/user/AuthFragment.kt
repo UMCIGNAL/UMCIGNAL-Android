@@ -1,4 +1,4 @@
-package com.daemon.smusignal.presentation.onboarding
+package com.daemon.smusignal.ui.user
 
 import android.content.Context
 import android.os.Bundle
@@ -16,8 +16,8 @@ import androidx.navigation.Navigation
 import com.daemon.smusignal.R
 import com.daemon.smusignal.databinding.FragmentAuthBinding
 import com.daemon.smusignal.di.AuthViewModelFactory
-import com.daemon.smusignal.network.RetrofitClient
-import com.daemon.smusignal.network.TokenManager
+import com.daemon.smusignal.data.remote.RetrofitClient
+import com.daemon.smusignal.data.remote.TokenManager
 
 class AuthFragment : Fragment() {
     private lateinit var navController: NavController
@@ -47,56 +47,70 @@ class AuthFragment : Fragment() {
 
         navController = Navigation.findNavController(view)
 
+        fun updateInputState(input: View, button: View, isActive: Boolean) {
+            if (isActive) {
+                input.setBackgroundResource(R.drawable.bg_et_auth_active)
+                button.isEnabled = true
+                button.isSelected = true
+            } else {
+                input.setBackgroundResource(R.drawable.bg_et_auth_default)
+                button.isEnabled = false
+                button.isSelected = false
+            }
+        }
+
+        // etAuthStdNum에 포커스가 갔을 때 상태 변경
+        binding.etAuthStdNum.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                updateInputState(binding.etAuthStdNum, binding.btnAuthCodeSend, true)
+                updateInputState(binding.etAuthCode, binding.btnConfirm, false)
+            }
+        }
+
+        // etAuthCode에 포커스가 갔을 때 상태 변경
+        binding.etAuthCode.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                updateInputState(binding.etAuthCode, binding.btnConfirm, true)
+                updateInputState(binding.etAuthStdNum, binding.btnAuthCodeSend, false)
+            }
+        }
+
+        // etAuthStdNum 변경 시 상태 변경
         binding.etAuthStdNum.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (!s.isNullOrEmpty()) {
-                    binding.etAuthStdNum.setBackgroundResource(R.drawable.bg_et_auth_active)
-                    // 글자가 한 글자라도 입력되면 버튼 활성화 및 selected 상태 적용
-                    binding.btnAuth.isClickable = true
-                    binding.btnAuth.isSelected = true
-                    binding.etAuthCode.setBackgroundResource(R.drawable.bg_et_auth_default)
-                    binding.btnConfirm.isSelected = false
+                    updateInputState(binding.etAuthStdNum, binding.btnAuthCodeSend, true)
+                    updateInputState(binding.etAuthCode, binding.btnConfirm, false)
                 } else {
-                    binding.etAuthStdNum.setBackgroundResource(R.drawable.bg_et_auth_default)
-                    // 글자가 없으면 버튼 비활성화 및 unselected 상태로 변경
-                    binding.btnAuth.isClickable = false
-                    binding.btnAuth.isSelected = false
+                    updateInputState(binding.etAuthStdNum, binding.btnAuthCodeSend, false)
                 }
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
+        // etAuthCode 변경 시 상태 변경
         binding.etAuthCode.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (!s.isNullOrEmpty()) {
-                    binding.etAuthCode.setBackgroundResource(R.drawable.bg_et_auth_active)
-                    binding.btnConfirm.isSelected = true
-                    binding.etAuthStdNum.setBackgroundResource(R.drawable.bg_et_auth_default)
-                    // 글자가 없으면 버튼 비활성화 및 unselected 상태로 변경
-                    binding.btnAuth.isClickable = false
-                    binding.btnAuth.isSelected = false
+                    updateInputState(binding.etAuthCode, binding.btnConfirm, true)
+                    updateInputState(binding.etAuthStdNum, binding.btnAuthCodeSend, false)
                 } else {
-                    binding.etAuthCode.setBackgroundResource(R.drawable.bg_et_auth_default)
-                    binding.btnConfirm.isSelected = false
+                    updateInputState(binding.etAuthCode, binding.btnConfirm, false)
                 }
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        binding.btnAuth.setOnClickListener {
+        binding.btnAuthCodeSend.setOnClickListener {
             val mail = binding.etAuthStdNum.text.toString().trim()
             if (mail.isEmpty()) {
                 Toast.makeText(requireContext(), "학번(메일)을 입력해주세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            // 버튼 클릭 시 et_auth_std_num의 배경을 default로 재설정
             binding.etAuthStdNum.setBackgroundResource(R.drawable.bg_et_auth_default)
-            // btn_auth의 상태를 selected로 변경 (selector에 의해 active drawable이 적용됨)
-            binding.btnAuth.isSelected = false
-
-            // API 호출: postMailCode 요청
+            binding.btnAuthCodeSend.isSelected = false
             viewModel.requestMailCode(mail)
         }
 
@@ -106,23 +120,39 @@ class AuthFragment : Fragment() {
                 Toast.makeText(requireContext(), "인증코드를 입력해주세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            // 버튼 클릭 시 et_auth_code의 배경을 default로 재설정
             binding.etAuthCode.setBackgroundResource(R.drawable.bg_et_auth_default)
-            // btn_confirm의 상태를 selected로 변경
-            binding.btnConfirm.isSelected = true
-
-            // API 호출: verifyMailCode 요청
+            binding.btnConfirm.isSelected = false
             viewModel.verifyMailCode(code)
         }
 
-        viewModel.mailCodeResponse.observe(viewLifecycleOwner) { response ->
-            binding.tvStdNum.visibility = View.VISIBLE
-            binding.tvStdNum.text = "인증코드를 전송했습니다."
-            binding.tvStdNum.setTextColor(ContextCompat.getColor(requireContext(), R.color.TB))
+        viewModel.stateRequestMailCode.observe(viewLifecycleOwner) { success ->
+            if (success) {
+                binding.tvStdNum.setTextColor(ContextCompat.getColor(requireContext(), R.color.TB))
+                binding.etAuthCode.requestFocus()
+            } else {
+                binding.tvStdNum.setTextColor(ContextCompat.getColor(requireContext(), R.color.R400))
+            }
         }
 
-        viewModel.mailVerificationResponse.observe(viewLifecycleOwner) { response ->
-            Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT).show()
+        viewModel.messageRequestMailCode.observe(viewLifecycleOwner) { message ->
+            binding.tvStdNum.visibility = View.VISIBLE
+            binding.tvStdNum.text = message
+        }
+
+        viewModel.stateVerifyMailCode.observe(viewLifecycleOwner) { success ->
+            if (success) {
+                binding.tvAuthCode.setTextColor(ContextCompat.getColor(requireContext(), R.color.TB))
+                // 온보딩 화면 이동
+                navController.navigate(R.id.action_navigation_auth_to_home_fragment)
+            } else {
+                binding.tvAuthCode.setTextColor(ContextCompat.getColor(requireContext(), R.color.R400))
+            }
+        }
+
+        viewModel.messageVerifyMailCode.observe(viewLifecycleOwner) { message ->
+            binding.tvAuthCode.visibility = View.VISIBLE
+            binding.tvAuthCode.text = message
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
     }
 
