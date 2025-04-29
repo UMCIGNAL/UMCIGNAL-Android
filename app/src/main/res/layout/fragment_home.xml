@@ -1,7 +1,342 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/TB">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.077" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_bottom_sheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.409" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.064" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.936" />
+
+        <ImageView
+            android:id="@+id/btn_setting"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_setting"
+            app:layout_constraintEnd_toEndOf="@+id/gl_end"
+            app:layout_constraintTop_toTopOf="@+id/gl_top" />
+
+        <ImageView
+            android:id="@+id/ic_smusignal"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/ic_smusignal"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/gl_end"
+            app:layout_constraintTop_toBottomOf="@+id/btn_setting" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="daemon"
+            android:textColor="@color/white"
+            style="@style/h1_b"
+            android:layout_marginTop="50dp"
+            app:layout_constraintStart_toStartOf="@+id/gl_start"
+            app:layout_constraintTop_toTopOf="@+id/ic_smusignal" />
+
+        <TextView
+            android:id="@+id/tv_user_name_extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="님"
+            android:textColor="@color/TB2"
+            style="@style/h1_b"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_user_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_user_name" />
+
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스뮤시그널에\n오신 것을 환영합니다!"
+            android:textColor="@color/TB2"
+            style="@style/t2_b"
+            app:layout_constraintStart_toStartOf="@+id/gl_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_home_reroll_count"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:background="@drawable/bg_home_reroll_count"
+            android:layout_marginTop="29dp"
+            android:layout_marginBottom="19dp"
+            app:layout_constraintStart_toStartOf="@+id/gl_start"
+            app:layout_constraintEnd_toEndOf="@+id/gl_end"
+            app:layout_constraintTop_toBottomOf="@+id/tv_welcome"
+            app:layout_constraintBottom_toTopOf="@+id/home_content">
+
+            <TextView
+                android:id="@+id/tv_reroll_count"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="10"
+                android:textColor="@color/white"
+                style="@style/b1_bl"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:gravity="center"
+                android:background="@drawable/bg_btn_radius_32_tb"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_reroll_count_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="당신의 남은 리롤 횟수"
+                android:textColor="@color/G900"
+                style="@style/b1_b"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@+id/tv_reroll_count"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/home_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_home_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gl_bottom_sheet"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_match_result"
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:background="@drawable/selector_btn_radius_32_tb"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintStart_toStartOf="@+id/gl_start"
+            app:layout_constraintEnd_toEndOf="@+id/gl_middle"
+            app:layout_constraintTop_toTopOf="@+id/home_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_hearts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.3" />
+
+            <TextView
+                android:id="@+id/tv_match_result_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="매칭 결과"
+                android:textColor="@color/white"
+                style="@style/b1_b"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="당신의 짝을 보고 싶을 때"
+                android:textColor="@color/TB2"
+                style="@style/d_m"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_match_result_header"
+                app:layout_constraintTop_toBottomOf="@+id/tv_match_result_header" />
+
+            <ImageView
+                android:layout_width="142dp"
+                android:layout_height="146dp"
+                android:src="@drawable/ic_hearts"
+                android:layout_marginTop="120dp"
+                app:layout_constraintStart_toStartOf="@+id/gl_hearts"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_my_info"
+            android:layout_width="0dp"
+            android:layout_height="112dp"
+            android:background="@drawable/selector_btn_radius_32_white"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toStartOf="@+id/gl_middle"
+            app:layout_constraintEnd_toEndOf="@+id/gl_end"
+            app:layout_constraintTop_toTopOf="@+id/home_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_tools"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.562" />
+
+            <TextView
+                android:id="@+id/tv_my_info_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내 매칭 정보 수정"
+                android:textColor="@color/G900"
+                style="@style/b1_b"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_tools"
+                android:layout_marginTop="42dp"
+                app:layout_constraintStart_toStartOf="@+id/gl_tools"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_crush_edit"
+            android:layout_width="0dp"
+            android:layout_height="112dp"
+            android:background="@drawable/selector_btn_radius_32_white"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toStartOf="@+id/gl_middle"
+            app:layout_constraintEnd_toEndOf="@+id/gl_end"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_match_result">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_paint_kit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.562" />
+
+            <TextView
+                android:id="@+id/tv_crush_edit_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이상형 재설정"
+                android:textColor="@color/G900"
+                style="@style/b1_b"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_paint_kit"
+                android:layout_marginTop="42dp"
+                app:layout_constraintStart_toStartOf="@+id/gl_paint_kit"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_event_1"
+            android:layout_width="0dp"
+            android:layout_height="108dp"
+            android:background="@drawable/selector_btn_radius_32_p"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/gl_start"
+            app:layout_constraintEnd_toEndOf="@+id/gl_end"
+            app:layout_constraintTop_toBottomOf="@+id/btn_match_result">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_gifts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.633" />
+
+            <TextView
+                android:id="@+id/tv_event_1_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event 1."
+                android:textColor="@color/white"
+                style="@style/b1_bl"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_event_1_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="추천인 코드로 매칭 한 번 더?"
+                android:textColor="@color/white"
+                style="@style/b3_b"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_event_1_header" />
+
+            <TextView
+                android:id="@+id/tv_event_1_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="친구의 추천인 코드를 입력하면\n이상형을 새로고침할 수 있습니다"
+                android:textColor="@color/P2"
+                style="@style/d_m_2"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_event_1_body" />
+
+            <ImageView
+                android:layout_width="98dp"
+                android:layout_height="94dp"
+                android:src="@drawable/ic_gifts"
+                app:layout_constraintStart_toStartOf="@+id/gl_gifts"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

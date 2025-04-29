@@ -8,32 +8,57 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.daemon.smusignal.presentation.home.HomeFragment"
+        android:name="com.daemon.smusignal.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_setting"
+            app:destination="@id/navigation_setting"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_login"
-        android:name="com.daemon.smusignal.presentation.onboarding.LoginFragment"
+        android:name="com.daemon.smusignal.ui.user.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_navigation_login_to_auth_fragment"
-            app:destination="@id/navigation_auth" />
+            app:destination="@id/navigation_auth"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_navigation_login_to_home_fragment"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/navigation_home"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_auth"
-        android:name="com.daemon.smusignal.presentation.onboarding.AuthFragment"
+        android:name="com.daemon.smusignal.ui.user.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth">
         <action
             android:id="@+id/action_navigation_auth_to_home_fragment"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/navigation_home"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.daemon.smusignal.ui.user.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 
 </navigation>
